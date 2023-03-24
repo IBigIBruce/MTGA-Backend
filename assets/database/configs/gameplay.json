@@ -16,32 +16,7 @@
                 "endDay": "31",
                 "endMonth": "12"
             }
-        ],
-        "loot": {
-            "634959225289190e5e773b3b": {
-                "max": [
-                    1,
-                    2,
-                    3,
-                    4,
-                    5,
-                    6
-                ],
-                "prizes": [
-                    "57514643245977207f2c2d09",
-                    "544fb62a4bdc2dfb738b4568",
-                    "57513f07245977207e26a311",
-                    "57513f9324597720a7128161",
-                    "57513fcc24597720a31c09a6",
-                    "5e8f3423fd7471236e6e3b64",
-                    "60b0f93284c20f0feb453da7",
-                    "5734773724597737fd047c14",
-                    "59e3577886f774176a362503",
-                    "57505f6224597709a92585a9",
-                    "544fb6cc4bdc2d34748b456e"
-                ]
-            }
-        }
+        ]
     },
     "bots": {
         "_preload": "Creates a cache on server start of generated bots, so that it is not done as the deploy timer starts; bots are also regenerated after each raid if their minThreshold is met. If all bots in cache are used, will generate normally then regenerate after raid",
@@ -88,6 +63,7 @@
         "allPocketsHaveSpecialSlots": true
     },
     "items": {
+        "allItemsArePreSearched": true,
         "quickExamine": true,
         "allExamined": {
             "enabled": true,
@@ -109,6 +85,9 @@
     },
     "raid": {
         "allowSelectEntryPoint": true,
+        "removeRestrictionsInRaid": true,
+        "_useCustomizedStaminaSettings": "/assets/database/configs/globals/stamina.json",
+        "useCustomizedStaminaSettings": true,
         "maxBotsAliveOnMap": 20,
         "waveCoef": {
             "low": 1,
@@ -124,6 +103,7 @@
             "createFriendlyAI": true
         },
         "defaultRaidSettings": {
+            "raidMode": "Local",
             "aiAmount": "AsOnline",
             "aiDifficulty": "AsOnline",
             "bossEnabled": true,
@@ -132,18 +112,21 @@
         },
         "airdropSettings": {
             "airdropChancePercent": {
-                "bigmap": 100,
-                "woods": 100,
-                "lighthouse": 100,
-                "shoreline": 100,
-                "interchange": 100,
-                "reserve": 100
+                "bigmap": 20,
+                "woods": 25,
+                "lighthouse": 20,
+                "shoreline": 20,
+                "interchange": 20,
+                "reserve": 10,
+                "tarkovStreets": 12
             },
             "airdropMinStartTimeSeconds": 60,
             "airdropMaxStartTimeSeconds": 300,
             "planeMinFlyHeight": 400,
             "planeMaxFlyHeight": 500,
-            "planeVolume": 0.5
+            "planeVolume": 0.5,
+            "planeSpeed": 65,
+            "crateFallSpeed": 3
         }
     },
     "trading": {
@@ -167,7 +150,8 @@
     },
     "hideout": {
         "fastScavcase": true,
-        "fastProduction": true
+        "fastProduction": true,
+        "wallUnlockInSeconds": 86400
     },
     "location": {
         "realTimeEnabled": true,
@@ -182,93 +166,8 @@
         "repeatable": {
             "Daily": {
                 "requiredLevel": 5,
-                "traderQuest": [
-                    {
-                        "traderId": "54cb50c76803fa8b248b4571",
-                        "questTypes": [
-                            "Completion",
-                            "Exploration",
-                            "Elimination"
-                        ]
-                    },
-                    {
-                        "traderId": "54cb57776803fa99248b456e",
-                        "questTypes": [
-                            "Completion",
-                            "Exploration",
-                            "Elimination"
-                        ]
-                    },
-                    {
-                        "traderId": "58330581ace78e27b8b10cee",
-                        "questTypes": [
-                            "Completion",
-                            "Exploration",
-                            "Elimination"
-                        ]
-                    },
-                    {
-                        "traderId": "5935c25fb3acc3127c3d8cd9",
-                        "questTypes": [
-                            "Completion",
-                            "Exploration",
-                            "Elimination"
-                        ]
-                    },
-                    {
-                        "traderId": "5a7c2eca46aef81a7ca2145d",
-                        "questTypes": [
-                            "Completion",
-                            "Exploration"
-                        ]
-                    },
-                    {
-                        "traderId": "5ac3b934156ae10c4430e83c",
-                        "questTypes": [
-                            "Completion",
-                            "Exploration",
-                            "Elimination"
-                        ]
-                    },
-                    {
-                        "traderId": "5c0647fdd443bc2504c2d371",
-                        "questTypes": [
-                            "Completion",
-                            "Exploration",
-                            "Elimination"
-                        ]
-                    }
-                ],
-                "locations": {
-                    "any": [
-                        "any"
-                    ],
-                    "factory4_day": [
-                        "factory4_day",
-                        "factory4_night"
-                    ],
-                    "bigmap": [
-                        "bigmap"
-                    ],
-                    "Woods": [
-                        "Woods"
-                    ],
-                    "Shoreline": [
-                        "Shoreline"
-                    ],
-                    "Interchange": [
-                        "Interchange"
-                    ],
-                    "Lighthouse": [
-                        "Lighthouse"
-                    ],
-                    "laboratory": [
-                        "laboratory"
-                    ],
-                    "RezervBase": [
-                        "RezervBase"
-                    ]
-                },
+                "maxQuests": 3,
+                "resetTime": 86400,
                 "config": {
                     "Exploration": {
                         "maxExtracts": 10,
@@ -369,18 +268,305 @@
                         "maxKills": 15,
                         "minKills": 5
                     }
-                },
-                "rewardBaseTypeBlacklist": [
-                    "543be5e94bdc2df1348b4568",
-                    "5b3f15d486f77432d0509248"
+                }
+            },
+            "Weekly": {
+                "requiredLevel": 15,
+                "maxQuests": 1,
+                "resetTime": 604800,
+                "config": {
+                    "Exploration": {
+                        "maxExtracts": 10,
+                        "specificExits": {
+                            "probability": 0.5,
+                            "passageRequirementWhitelist": [
+                                "None",
+                                "TransferItem",
+                                "WorldEvent",
+                                "Train",
+                                "Reference",
+                                "Empty"
+                            ]
+                        }
+                    },
+                    "Completion": {
+                        "minRequestedAmount": 2,
+                        "maxRequestedAmount": 10,
+                        "minRequestedBulletAmount": 20,
+                        "maxRequestedBulletAmount": 60,
+                        "useWhitelist": true,
+                        "useBlacklist": false
+                    },
+                    "Elimination": {
+                        "targets": [
+                            {
+                                "key": [
+                                    "bossBully",
+                                    "bossGluhar",
+                                    "bossKilla",
+                                    "bossSanitar",
+                                    "bossTagilla",
+                                    "bossKojaniy",
+                                    "bossKnight"
+                                ],
+                                "relativeProbability": 0.5,
+                                "data": {
+                                    "isBoss": true
+                                }
+                            },
+                            {
+                                "key": "Savage",
+                                "relativeProbability": 7,
+                                "data": {
+                                    "isBoss": false
+                                }
+                            }
+                        ],
+                        "bodyPartProb": 0.4,
+                        "bodyParts": [
+                            {
+                                "key": "Head",
+                                "relativeProbability": 1,
+                                "data": [
+                                    "Head"
+                                ]
+                            },
+                            {
+                                "key": "Stomach",
+                                "relativeProbability": 3,
+                                "data": [
+                                    "Stomach"
+                                ]
+                            },
+                            {
+                                "key": "Chest",
+                                "relativeProbability": 5,
+                                "data": [
+                                    "Chest"
+                                ]
+                            },
+                            {
+                                "key": "Arms",
+                                "relativeProbability": 0.5,
+                                "data": [
+                                    "LeftArm",
+                                    "RightArm"
+                                ]
+                            },
+                            {
+                                "key": "Legs",
+                                "relativeProbability": 1,
+                                "data": [
+                                    "LeftLeg",
+                                    "RightLeg"
+                                ]
+                            }
+                        ],
+                        "specificLocationProb": 0.25,
+                        "distLocationBlacklist": [
+                            "laboratory",
+                            "factory4_day",
+                            "factory4_night"
+                        ],
+                        "distProb": 0.25,
+                        "maxDist": 200,
+                        "minDist": 10,
+                        "maxKills": 15,
+                        "minKills": 5
+                    }
+                }
+            },
+            "locations": {
+                "any": [
+                    "any"
                 ],
-                "rewardBlacklist": []
-            }
+                "factory4_day": [
+                    "factory4_day",
+                    "factory4_night"
+                ],
+                "bigmap": [
+                    "bigmap"
+                ],
+                "Woods": [
+                    "Woods"
+                ],
+                "Shoreline": [
+                    "Shoreline"
+                ],
+                "Interchange": [
+                    "Interchange"
+                ],
+                "Lighthouse": [
+                    "Lighthouse"
+                ],
+                "laboratory": [
+                    "laboratory"
+                ],
+                "RezervBase": [
+                    "RezervBase"
+                ]
+            },
+            "quests": {
+                "Elimination": [
+                    "54cb50c76803fa8b248b4571",
+                    "54cb57776803fa99248b456e",
+                    "58330581ace78e27b8b10cee",
+                    "5935c25fb3acc3127c3d8cd9",
+                    "5ac3b934156ae10c4430e83c",
+                    "5c0647fdd443bc2504c2d371"
+                ],
+                "Exploration": [
+                    "54cb50c76803fa8b248b4571",
+                    "54cb57776803fa99248b456e",
+                    "58330581ace78e27b8b10cee",
+                    "5935c25fb3acc3127c3d8cd9",
+                    "5ac3b934156ae10c4430e83c",
+                    "5c0647fdd443bc2504c2d371",
+                    "5a7c2eca46aef81a7ca2145d"
+                ],
+                "Completion": [
+                    "54cb50c76803fa8b248b4571",
+                    "54cb57776803fa99248b456e",
+                    "58330581ace78e27b8b10cee",
+                    "5935c25fb3acc3127c3d8cd9",
+                    "5ac3b934156ae10c4430e83c",
+                    "5c0647fdd443bc2504c2d371",
+                    "5a7c2eca46aef81a7ca2145d"
+                ]
+            },
+            "rewardBaseTypeBlacklist": [
+                "543be5e94bdc2df1348b4568",
+                "5b3f15d486f77432d0509248"
+            ],
+            "rewardBlacklist": []
         }
     },
-    "loot": {},
+    "loot": {
+        "ForcePresetsLoot": false
+    },
     "match": {
         "enabled": true
     },
-    "weapons": {}
+    "weapons": {
+        "_useCustomizedWeaponSettings": "/assets/database/configs/globals/weapon.json",
+        "useCustomizedWeaponSettings": true
+    },
+    "skills": {
+        "_useCustomizedSkillSettings": "/assets/database/configs/globals/skills.json",
+        "useCustomizedSkillSettings": true,
+        "repairKit": {
+            "armor": {
+                "rarityWeight": {
+                    "common": 5,
+                    "rare": 1
+                },
+                "bonusTypeWeight": {
+                    "DamageReduction": 1
+                },
+                "common": {
+                    "DamageReduction": {
+                        "valuesMinMax": {
+                            "min": 0.9,
+                            "max": 0.98
+                        },
+                        "activeDurabilityPercentMinMax": {
+                            "min": 75,
+                            "max": 90
+                        }
+                    }
+                },
+                "rare": {
+                    "DamageReduction": {
+                        "valuesMinMax": {
+                            "min": 0.8,
+                            "max": 0.9
+                        },
+                        "activeDurabilityPercentMinMax": {
+                            "min": 75,
+                            "max": 90
+                        }
+                    }
+                }
+            },
+            "weapon": {
+                "rarityWeight": {
+                    "common": 5,
+                    "rare": 1
+                },
+                "bonusTypeWeight": {
+                    "WeaponSpread": 1,
+                    "MalfunctionProtections": 1,
+                    "WeaponDamage": 1
+                },
+                "common": {
+                    "WeaponSpread": {
+                        "valuesMinMax": {
+                            "min": 0.9,
+                            "max": 0.99
+                        },
+                        "activeDurabilityPercentMinMax": {
+                            "min": 75,
+                            "max": 90
+                        }
+                    },
+                    "MalfunctionProtections": {
+                        "valuesMinMax": {
+                            "min": 0.94,
+                            "max": 0.96
+                        },
+                        "activeDurabilityPercentMinMax": {
+                            "min": 75,
+                            "max": 90
+                        }
+                    },
+                    "WeaponDamage": {
+                        "valuesMinMax": {
+                            "min": 0.7,
+                            "max": 0.9
+                        },
+                        "activeDurabilityPercentMinMax": {
+                            "min": 75,
+                            "max": 90
+                        }
+                    }
+                },
+                "rare": {
+                    "WeaponSpread": {
+                        "valuesMinMax": {
+                            "min": 0.8,
+                            "max": 0.9
+                        },
+                        "activeDurabilityPercentMinMax": {
+                            "min": 75,
+                            "max": 90
+                        }
+                    },
+                    "MalfunctionProtections": {
+                        "valuesMinMax": {
+                            "min": 0.75,
+                            "max": 0.90
+                        },
+                        "activeDurabilityPercentMinMax": {
+                            "min": 75,
+                            "max": 90
+                        }
+                    },
+                    "WeaponDamage": {
+                        "valuesMinMax": {
+                            "min": 0.3,
+                            "max": 0.6
+                        },
+                        "activeDurabilityPercentMinMax": {
+                            "min": 75,
+                            "max": 90
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "health": {
+        "_useCustomizedHealthSettings": "/assets/database/configs/globals/health.json",
+        "useCustomizedHealthSettings": true
+    }
 }

@@ -420,13 +420,13 @@
       },
       {
         "Id": "LightVests",
-        "Progress": 0,
+        "Progress": 5100,
         "PointsEarnedDuringSession": 0,
         "LastAccess": 0
       },
       {
         "Id": "HeavyVests",
-        "Progress": 0,
+        "Progress": 5100,
         "PointsEarnedDuringSession": 0,
         "LastAccess": 0
       },
@@ -864,7 +864,7 @@
       },
       {
         "type": 12,
-        "level": 1,
+        "level": 3,
         "active": true,
         "passiveBonusesEnabled": true,
         "completeTime": 0,
@@ -961,8 +961,29 @@
         "constructing": false,
         "slots": [],
         "lastRecipe": ""
+      },
+      {
+        "type": 22,
+        "level": 1,
+        "active": true,
+        "passiveBonusesEnabled": true,
+        "completeTime": 0,
+        "constructing": false,
+        "slots": [],
+        "lastRecipe": ""
+      },
+      {
+        "type": 23,
+        "level": 0,
+        "active": true,
+        "passiveBonusesEnabled": true,
+        "completeTime": 0,
+        "constructing": false,
+        "slots": [],
+        "lastRecipe": ""
       }
-    ]
+    ],
+    "Improvements": {}
   },
   "Bonuses": [
     {

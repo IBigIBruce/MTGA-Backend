@@ -1,5 +1,4 @@
 # Logs
-serverlogs/*
 logs
 *.log
 npm-debug.log*
@@ -55,7 +54,12 @@ jspm_packages
 # clinic
 *clinic*
 *flamegraph*
+
+# project
 package-lock.json
-user/profiles/*
-user/certs/*
+pnpm-lock.yaml
+user/
 fleaoffers.json
+assets/database/configs/resupply.json
+deploy/dist
+serverLogs/
